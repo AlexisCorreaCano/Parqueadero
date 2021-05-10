@@ -8,6 +8,10 @@ pipeline{
         disableConcurrentBuilds()
     }
 
+    tools {
+        jdk 'JDK8_Mac' //Preinstalada en la Configuración del Master
+    }
+
     stages{
         stage('Checkout'){
             steps{
