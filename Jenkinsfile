@@ -8,10 +8,6 @@ pipeline{
         disableConcurrentBuilds()
     }
 
-    tools {
-        jdk 'JDK11_Centos'
-    }
-
     stages{
         stage('Checkout'){
             steps{
