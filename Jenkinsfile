@@ -9,24 +9,26 @@ pipeline{
     }
 
     tools {
-        jdk 'JDK11_Centos' //Verisión preinstalada en la Configuración del Master
+        jdk 'JDK11_Centos'
     }
 
     stages{
         stage('Checkout'){
-            echo "------------>Checkout<------------"
-            checkout([
-                $class: 'GitSCM', 
-                branches: [[name: '*/master']], 
-                doGenerateSubmoduleConfigurations: false, 
-                extensions: [], 
-                gitTool: 'Default', 
-                submoduleCfg: [], 
-                userRemoteConfigs: [[
-                    credentialsId: 'GitHub_AlexisCorreaCano', 
-                    url:'https://github.com/AlexisCorreaCano/Parqueadero'
-                ]]
-            ])
+            steps{
+                echo "------------>Checkout<------------"
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: '*/master']], 
+                    doGenerateSubmoduleConfigurations: false, 
+                    extensions: [], 
+                    gitTool: 'Default', 
+                    submoduleCfg: [], 
+                    userRemoteConfigs: [[
+                        credentialsId: 'GitHub_AlexisCorreaCano', 
+                        url:'https://github.com/AlexisCorreaCano/Parqueadero'
+                    ]]
+                ])
+            }
         }
 
         stage('Build') {
