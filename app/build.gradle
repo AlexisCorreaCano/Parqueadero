@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "co.com.ceiba.estacionamiento"
+        applicationId "co.com.ceiba.parqueadero"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1

@@ -1,4 +1,4 @@
-package co.com.ceiba.estacionamiento;
+package co.com.ceiba.parqueadero;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package co.com.ceiba.estacionamiento;
+package co.com.ceiba.parqueadero;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("co.com.ceiba.estacionamiento", appContext.getPackageName());
+        assertEquals("co.com.ceiba.parqueadero", appContext.getPackageName());
     }
 }
