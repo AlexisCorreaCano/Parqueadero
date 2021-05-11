@@ -38,20 +38,20 @@ pipeline{
             }
         }
 
+        stage('Compile & Unit Tests') {
+            steps{
+                echo "------------>compile & Unit Tests<------------"
+                sh 'chmod +x gradlew'
+                sh './gradlew --b ./build.gradle test'
+            }
+        }
+
         stage('Static Code Analysis') {
             steps{
                 echo '------------>Análisis de código estático<------------'
                 withSonarQubeEnv('Sonar') {
                     sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
                 }
-            }
-        }
-
-        stage('Compile & Unit Tests') {
-            steps{
-                echo "------------>compile & Unit Tests<------------"
-                sh 'chmod +x gradlew'
-                sh './gradlew --b ./build.gradle test'
             }
         }
     }
