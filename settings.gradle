@@ -1,2 +1,4 @@
-include ':app'
+include ':infraestructure'
+include ':domain'
+include ':presentation'
 rootProject.name = "Parqueadero"
