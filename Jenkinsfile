@@ -38,9 +38,9 @@ pipeline{
             }
         }
 
-        stage('Compile & Unit Tests') {
+        stage('Unit Tests') {
             steps{
-                echo "------------>compile & Unit Tests<------------"
+                echo "------------>Unit Tests<------------"
                 sh 'chmod +x gradlew'
                 sh './gradlew --b ./build.gradle test'
             }
