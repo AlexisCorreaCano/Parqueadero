@@ -13,8 +13,11 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class ExampleUnitTest {
+    PruebaCovertura pruebaCovertura = new PruebaCovertura();
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+        int resultado = pruebaCovertura.sumar(2,2);
+
+        assertEquals(resultado,4);
     }
 }
