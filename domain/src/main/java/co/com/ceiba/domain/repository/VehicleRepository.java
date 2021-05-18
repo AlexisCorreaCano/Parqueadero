@@ -1,4 +1,4 @@
-package co.com.ceiba.domain.Repository;
+package co.com.ceiba.domain.repository;
 
 import co.com.ceiba.domain.common.constant.VehicleType;
 import co.com.ceiba.domain.model.Vehicle;

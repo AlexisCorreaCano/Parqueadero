@@ -3,7 +3,9 @@ package co.com.ceiba.domain.service;
 import java.util.Calendar;
 import java.util.Date;
 
-import co.com.ceiba.domain.Repository.VehicleRepository;
+import javax.inject.Inject;
+
+import co.com.ceiba.domain.repository.VehicleRepository;
 import co.com.ceiba.domain.common.constant.Constants;
 import co.com.ceiba.domain.common.constant.ErrorCode;
 import co.com.ceiba.domain.common.constant.ErrorMessage;
@@ -13,8 +15,10 @@ import co.com.ceiba.domain.model.Vehicle;
 
 public class CheckInService {
 
-    private VehicleRepository vehicleRepository;
-    private Calendar calendar = Calendar.getInstance();
+    private final VehicleRepository vehicleRepository;
+    private final Calendar calendar = Calendar.getInstance();
+
+    @Inject
     public CheckInService(VehicleRepository vehicleRepository) {
         this.vehicleRepository = vehicleRepository;
     }

@@ -10,8 +10,8 @@ import co.com.ceiba.domain.common.exception.BusinessException;
 public class Vehicle {
     private String licensePlate;
     private Integer cylinderCapacity;
-    private VehicleType type;
-    private Date checkInDate;
+    private final VehicleType type;
+    private final Date checkInDate;
 
     public Vehicle(String licensePlate, Integer cylinderCapacity, VehicleType type, Date checkInDate) throws BusinessException {
         setLicensePlate(licensePlate);

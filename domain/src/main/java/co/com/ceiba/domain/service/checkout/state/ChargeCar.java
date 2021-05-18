@@ -1,11 +1,12 @@
-package co.com.ceiba.domain.state;
+package co.com.ceiba.domain.service.checkout.state;
 
 import java.util.Date;
 
 import co.com.ceiba.domain.common.constant.Constants;
 import co.com.ceiba.domain.model.Vehicle;
 
-public class ChargeMotorcycle implements ChargeState{
+public class ChargeCar implements ChargeState {
+
     @Override
     public double chargeToVehicle(Vehicle vehicle) {
         //TODO separar esta logica para que no se repita (horas)
@@ -25,12 +26,10 @@ public class ChargeMotorcycle implements ChargeState{
             hours = 0;
         }
 
-        double total = days * Constants.COTS_DAY_MOTORCYCLE + hours * Constants.COST_HOUR_MOTORCYCLE;
-
-        if(vehicle.getCylinderCapacity() > 500){
-            total = total+Constants.COTS_EXTRA_PRICE;
-        }
+        double total = days * Constants.COTS_DAY_CAR + hours * Constants.COST_HOUR_CAR;
 
         return total;
     }
+
+
 }

@@ -1,4 +1,4 @@
-package co.com.ceiba.domain.state;
+package co.com.ceiba.domain.service.checkout.state;
 
 import co.com.ceiba.domain.model.Vehicle;
 

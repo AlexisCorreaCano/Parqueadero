@@ -1,10 +1,6 @@
 package co.com.ceiba.infraestructure.respository;
 
-
-import co.com.ceiba.domain.Repository.VehicleRepository;
-import co.com.ceiba.domain.common.VehicleType;
-import co.com.ceiba.domain.model.Vehicle;
-import co.com.ceiba.infraestructure.respository.DAO.VehicleDAO;
+import co.com.ceiba.infraestructure.respository.dao.VehicleDAO;
 
 public class VehicleRepositoryImp implements VehicleRepository {
 
@@ -26,6 +22,7 @@ public class VehicleRepositoryImp implements VehicleRepository {
 
     @Override
     public void enterVehicle(Vehicle vehicle) {
-        vehicleDAO.insertVehicle(vehicles);
+        vehicleDAO.insertVehicle(vehicle);
     }
+
 }

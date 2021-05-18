@@ -1,16 +1,18 @@
-package co.com.ceiba.domain.service;
+package co.com.ceiba.domain.service.checkout;
 
-import co.com.ceiba.domain.Repository.VehicleRepository;
+import javax.inject.Inject;
+
+import co.com.ceiba.domain.repository.VehicleRepository;
 import co.com.ceiba.domain.model.Vehicle;
-import co.com.ceiba.domain.state.ChargeContext;
-import co.com.ceiba.domain.state.ChargeState;
+import co.com.ceiba.domain.service.checkout.state.ChargeContext;
+import co.com.ceiba.domain.service.checkout.state.ChargeState;
 
 public class CheckOutService {
 
-    private VehicleRepository vehicleRepository;
+    private final VehicleRepository vehicleRepository;
+    private final ChargeContext chargeContext;
 
-    private ChargeContext chargeContext;
-
+    @Inject
     public CheckOutService(VehicleRepository vehicleRepository, ChargeContext chargeContext) {
         this.vehicleRepository = vehicleRepository;
         this.chargeContext = chargeContext;

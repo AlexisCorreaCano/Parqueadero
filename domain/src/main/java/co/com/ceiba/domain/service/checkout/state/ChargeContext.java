@@ -1,4 +1,6 @@
-package co.com.ceiba.domain.state;
+package co.com.ceiba.domain.service.checkout.state;
+
+import javax.inject.Inject;
 
 import co.com.ceiba.domain.common.constant.VehicleType;
 
@@ -6,6 +8,7 @@ public class ChargeContext {
 
     private ChargeState state;
 
+    @Inject
     public ChargeContext() {
     }
 
