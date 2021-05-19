@@ -6,7 +6,7 @@ import co.com.ceiba.domain.common.constant.ErrorCode;
 import co.com.ceiba.domain.common.constant.ErrorMessage;
 import co.com.ceiba.domain.common.exception.BusinessException;
 
-public class Vehicle {
+public abstract class Vehicle {
     private String licensePlate;
     private final Date checkInDate;
 

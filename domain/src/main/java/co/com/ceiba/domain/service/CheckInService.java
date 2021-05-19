@@ -46,7 +46,7 @@ public class CheckInService {
 
     //Todo validar que el vehiculo no este en el estacionamiento
 
-    public boolean thereIsCapacity(Vehicle vehicle){
+    private boolean thereIsCapacity(Vehicle vehicle){
 
         boolean result = false;
         int numberVehicles = 0;
@@ -72,7 +72,7 @@ public class CheckInService {
         return result;
     }
 
-    public boolean entryIsAllowed(Vehicle vehicle){
+    private boolean entryIsAllowed(Vehicle vehicle){
 
         if(vehicle instanceof Motorcycle){
             return true;

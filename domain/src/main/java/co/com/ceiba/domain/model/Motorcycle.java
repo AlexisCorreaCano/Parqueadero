@@ -7,14 +7,14 @@ import co.com.ceiba.domain.common.constant.ErrorMessage;
 import co.com.ceiba.domain.common.exception.BusinessException;
 
 public class Motorcycle extends Vehicle{
-    private Integer cylinderCapacity;
+    private int cylinderCapacity;
 
-    public Motorcycle(String licensePlate, Date checkInDate, Integer cylinderCapacity) throws BusinessException {
+    public Motorcycle(String licensePlate, Date checkInDate, int cylinderCapacity) throws BusinessException {
         super(licensePlate, checkInDate);
         setCylinderCapacity(cylinderCapacity);
     }
 
-    public Integer getCylinderCapacity() {
+    public int getCylinderCapacity() {
         return cylinderCapacity;
     }
 
