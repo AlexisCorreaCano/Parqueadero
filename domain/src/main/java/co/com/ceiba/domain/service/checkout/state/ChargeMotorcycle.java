@@ -3,6 +3,7 @@ package co.com.ceiba.domain.service.checkout.state;
 import java.util.Date;
 
 import co.com.ceiba.domain.common.constant.Constants;
+import co.com.ceiba.domain.model.Motorcycle;
 import co.com.ceiba.domain.model.Vehicle;
 
 public class ChargeMotorcycle implements ChargeState{
@@ -27,7 +28,7 @@ public class ChargeMotorcycle implements ChargeState{
 
         double total = days * Constants.COTS_DAY_MOTORCYCLE + hours * Constants.COST_HOUR_MOTORCYCLE;
 
-        if(vehicle.getCylinderCapacity() > 500){
+        if(((Motorcycle)vehicle).getCylinderCapacity() > 500){
             total = total+Constants.COTS_EXTRA_PRICE;
         }
 

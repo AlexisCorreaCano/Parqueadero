@@ -1,14 +1,12 @@
 package co.com.ceiba.domain.service;
 
-import android.os.AsyncTask;
-
-import java.text.ParseException;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import co.com.ceiba.domain.common.constant.VehicleType;
 import co.com.ceiba.domain.common.exception.BusinessException;
+import co.com.ceiba.domain.model.Car;
+import co.com.ceiba.domain.model.Motorcycle;
 import co.com.ceiba.domain.model.Vehicle;
 import co.com.ceiba.domain.repository.VehicleRepository;
 
@@ -20,8 +18,12 @@ public class ParkingService {
         this.vehicleRepository = vehicleRepository;
     }
 
-    public List<Vehicle> getVehicles(VehicleType type) throws BusinessException {
-        return vehicleRepository.getVehiclesByType(VehicleType.CAR);
+    public List<Car> getCars() throws BusinessException {
+        return vehicleRepository.getCars();
+    }
+
+    public List<Motorcycle> getMotorcycles() throws BusinessException {
+        return vehicleRepository.getMotorcycles();
     }
 
 

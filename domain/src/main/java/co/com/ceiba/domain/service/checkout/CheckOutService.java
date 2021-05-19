@@ -19,7 +19,7 @@ public class CheckOutService {
     }
 
     public double takeOutVehicle(Vehicle vehicle){
-        chargeContext.setContext(vehicle.getType());
+        chargeContext.setContext(vehicle);
         ChargeState chargeState = chargeContext.getContext();
         return chargeState.chargeToVehicle(vehicle);
     }

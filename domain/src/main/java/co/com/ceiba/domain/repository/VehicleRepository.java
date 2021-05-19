@@ -1,19 +1,27 @@
 package co.com.ceiba.domain.repository;
 
-import java.text.ParseException;
 import java.util.List;
 
-import co.com.ceiba.domain.common.constant.VehicleType;
 import co.com.ceiba.domain.common.exception.BusinessException;
+import co.com.ceiba.domain.model.Car;
+import co.com.ceiba.domain.model.Motorcycle;
 import co.com.ceiba.domain.model.Vehicle;
 
 public interface VehicleRepository {
 
-    List<Vehicle> getVehiclesByType(VehicleType type) throws BusinessException;
+    List<Car> getCars() throws BusinessException;
 
-    int getVehicleNumberByType(VehicleType type);
+    List<Motorcycle> getMotorcycles() throws BusinessException;
 
-    void takeOutVehicle(Vehicle vehicle);
+    int getCarsNumber();
 
-    void enterVehicle(Vehicle vehicle);
+    int getMotorcyclesNumber();
+
+    void takeOutCar(Car car);
+
+    void enterCar(Car car);
+
+    void takeOutMotorcycle(Motorcycle motorcycle);
+
+    void enterMotorcycle(Motorcycle motorcycle);
 }

@@ -2,7 +2,9 @@ package co.com.ceiba.domain.service.checkout.state;
 
 import javax.inject.Inject;
 
-import co.com.ceiba.domain.common.constant.VehicleType;
+import co.com.ceiba.domain.model.Car;
+import co.com.ceiba.domain.model.Motorcycle;
+import co.com.ceiba.domain.model.Vehicle;
 
 public class ChargeContext {
 
@@ -16,11 +18,11 @@ public class ChargeContext {
         return state;
     }
 
-    public void setContext(VehicleType vehicleType) {
-        if (vehicleType.equals(VehicleType.CAR)){
+    public void setContext(Vehicle vehicle) {
+        if (vehicle instanceof Car){
             this.state = new ChargeCar();
         }
-        if (vehicleType.equals(VehicleType.MOTORCYCLE)){
+        if (vehicle instanceof Motorcycle){
             this.state = new ChargeMotorcycle();
         }
 
