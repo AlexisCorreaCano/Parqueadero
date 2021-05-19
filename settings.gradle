@@ -1,4 +1,4 @@
-include ':infraestructure'
 include ':domain'
+include ':infraestructure'
 include ':presentation'
 rootProject.name = "Parqueadero"

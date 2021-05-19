@@ -1,25 +1,25 @@
-package co.com.ceiba.infraestructure.respository.Entity;
+package co.com.ceiba.infraestructure.respository.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
-
-import co.com.ceiba.domain.common.VehicleType;
+import co.com.ceiba.domain.common.constant.VehicleType;
 
 @Entity
 public class VehicleEntity {
 
     @PrimaryKey
-    private String licensePlate;
+    @NonNull
+    public String licensePlate;
 
     @ColumnInfo(name = "cylinder_capacity")
-    private Integer cylinderCapacity;
+    public Integer cylinderCapacity;
 
     @ColumnInfo(name = "type")
-    private VehicleType type;
+    public VehicleType type;
 
     @ColumnInfo(name = "check_in_date")
-    private Date checkInDate;
+    public Long checkInDate;
 }

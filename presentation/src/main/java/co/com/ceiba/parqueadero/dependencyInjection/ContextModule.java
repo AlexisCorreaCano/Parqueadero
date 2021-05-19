@@ -1,4 +1,4 @@
-package co.com.ceiba.parqueadero.DI;
+package co.com.ceiba.parqueadero.dependencyInjection;
 
 import android.content.Context;
 

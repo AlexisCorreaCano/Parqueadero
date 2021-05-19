@@ -42,7 +42,7 @@ public class CheckInService {
     public boolean thereIsCapacity(VehicleType vehicleType){
 
         boolean result = false;
-        int numberVehicles = vehicleRepository.getVehiclesByType(vehicleType);
+        int numberVehicles = vehicleRepository.getVehicleNumberByType(vehicleType);
 
         if (vehicleType.equals(VehicleType.CAR) && numberVehicles < Constants.NUMBER_CAR_CELLS){
             result = true;

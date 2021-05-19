@@ -3,7 +3,7 @@ package co.com.ceiba.parqueadero.dependencyInjection;
 
 import android.app.Application;
 
-public class DaggerApplication extends Application {
+public class ParkingApplication extends Application {
 
     private ApplicationComponent applicationComponent;
 
@@ -12,6 +12,8 @@ public class DaggerApplication extends Application {
         super.onCreate();
         this.applicationComponent = DaggerApplicationComponent.builder()
                 .contextModule(new ContextModule(this))
+                .applicationModule(new ApplicationModule(this))
+                .roomModule(new RoomModule(this))
                 .build();
     }
 

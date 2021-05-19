@@ -8,14 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import co.com.ceiba.domain.model.Vehicle;
 import co.com.ceiba.parqueadero.R;
+import co.com.ceiba.parqueadero.contract.GenericView;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MotorcycleFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MotorcycleFragment extends Fragment {
+public class MotorcycleFragment extends Fragment implements GenericView {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,4 +67,20 @@ public class MotorcycleFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_motorcycle, container, false);
     }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showVehicles(List<Vehicle> vehicles) {
+
+    }
+
 }
