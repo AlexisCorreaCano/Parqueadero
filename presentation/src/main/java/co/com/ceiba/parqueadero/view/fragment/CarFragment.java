@@ -1,46 +1,57 @@
 package co.com.ceiba.parqueadero.view.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import co.com.ceiba.domain.common.constant.VehicleType;
 import co.com.ceiba.domain.common.exception.BusinessException;
-import co.com.ceiba.domain.model.Vehicle;
+import co.com.ceiba.domain.model.Car;
 import co.com.ceiba.parqueadero.dependencyInjection.ParkingApplication;
 import co.com.ceiba.parqueadero.R;
-import co.com.ceiba.parqueadero.contract.GenericView;
+import co.com.ceiba.parqueadero.contract.CarView;
 import co.com.ceiba.parqueadero.contract.ParkingPresenter;
+import co.com.ceiba.parqueadero.view.adapter.CarAdapter;
 
-public class CarFragment extends Fragment implements GenericView {
+public class CarFragment extends Fragment implements CarView {
 
     @Inject
     ParkingPresenter parkingPresenter;
 
+    private List<Car> cars = new ArrayList<>();
+    private CarAdapter adapter;
+
+    private RecyclerView recyclerView;
+    private FloatingActionButton fab;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         ((ParkingApplication) getActivity().getApplicationContext()).getApplicationComponent().inject(this);
+        super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_car, container, false);
     }
 
@@ -48,24 +59,42 @@ public class CarFragment extends Fragment implements GenericView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        parkingPresenter.listVehicles(VehicleType.CAR);
+        parkingPresenter.setCarView(this);
+        setUpViews(view);
+        addEvents();
 
+    }
 
-        FloatingActionButton fab = view.findViewById(R.id.fab);
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    private void loadData() {
+        parkingPresenter.listCars();
+    }
+
+    private void setUpViews(View view) {
+        fab = view.findViewById(R.id.fab);
+        recyclerView = view.findViewById(R.id.rv_cars);
+    }
+
+    private void addEvents() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Car vehicle = null;
                 try {
-                    Vehicle vehicle = new Vehicle("ASD987",1200, VehicleType.CAR,new Date());
-                    parkingPresenter.addVehicle(vehicle);
+                    vehicle = new Car("ASD987",new Date());
                 } catch (BusinessException e) {
                     e.printStackTrace();
                 }
+                parkingPresenter.addCar(vehicle);
 
             }
         });
-
-
     }
 
     @Override
@@ -79,8 +108,80 @@ public class CarFragment extends Fragment implements GenericView {
     }
 
     @Override
-    public void showVehicles(List<Vehicle> vehicles) {
-        List<Vehicle> vehicles1 = vehicles;
+    public void showCars(List<Car> cars) {
+        this.cars = cars;
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter = new CarAdapter(cars);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView.setAdapter(adapter);
+                
+                recyclerViewConfig();
+
+            }
+        });
+    }
+
+    @Override
+    public void deleteCar(int position) {
+        cars.remove(position);
+
+        adapter.notifyItemRemoved(position);
+    }
+
+    @Override
+    public void showTotal(double total) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                builder1.setMessage("Total a pagar: "+total);
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+            }
+        });
+
 
     }
+
+    private void recyclerViewConfig() {
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(createHelperCallback());
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    private ItemTouchHelper.Callback createHelperCallback() {
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(final RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                int position = viewHolder.getAdapterPosition();
+                parkingPresenter.deleteCar(cars.get(position));
+            }
+        };
+
+        return simpleItemTouchCallback;
+    }
+
 }
