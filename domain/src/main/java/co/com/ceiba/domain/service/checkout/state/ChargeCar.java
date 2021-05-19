@@ -11,7 +11,8 @@ public class ChargeCar implements ChargeState {
     public double chargeToVehicle(Vehicle vehicle) {
         //TODO separar esta logica para que no se repita (horas)
         Date date = new Date();
-        long milliseconds = vehicle.getCheckInDate().getTime()-date.getTime();
+        Date carDate = vehicle.getCheckInDate();
+        long milliseconds = date.getTime() - carDate.getTime();
 
         long days = (milliseconds
                 / (1000 * 60 * 60))
