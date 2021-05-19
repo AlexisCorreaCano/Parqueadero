@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -41,6 +42,7 @@ public class CarFragment extends Fragment implements CarView {
 
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
+    private EditText txtLicensePlace;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class CarFragment extends Fragment implements CarView {
     private void setUpViews(View view) {
         fab = view.findViewById(R.id.fab);
         recyclerView = view.findViewById(R.id.rv_cars);
+        txtLicensePlace = view.findViewById(R.id.lbl_license_plate);
     }
 
     private void addEvents() {
@@ -85,13 +88,20 @@ public class CarFragment extends Fragment implements CarView {
             @Override
             public void onClick(View view) {
 
+                String licensePlate = txtLicensePlace.getText().toString();
+
+                if (licensePlate.isEmpty()){
+                    return;
+                }
+
                 Car vehicle = null;
                 try {
-                    vehicle = new Car("ASD987",new Date());
+                    vehicle = new Car(licensePlate,new Date());
                 } catch (BusinessException e) {
                     e.printStackTrace();
                 }
                 parkingPresenter.addCar(vehicle);
+                loadData();
 
             }
         });

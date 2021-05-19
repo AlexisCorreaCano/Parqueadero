@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -41,6 +42,8 @@ public class MotorcycleFragment extends Fragment implements MotorcycleView {
 
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
+    private EditText txtLicensePlate;
+    private EditText txtCylinderCapacity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,8 @@ public class MotorcycleFragment extends Fragment implements MotorcycleView {
     private void setUpViews(View view) {
         fab = view.findViewById(R.id.fab_motorcycle);
         recyclerView = view.findViewById(R.id.rv_motorcycle);
+        txtLicensePlate = view.findViewById(R.id.txt_license_plate);
+        txtCylinderCapacity = view.findViewById(R.id.txt_cylinder_capacity);
     }
 
     @Override
@@ -85,13 +90,21 @@ public class MotorcycleFragment extends Fragment implements MotorcycleView {
             @Override
             public void onClick(View view) {
 
+                String licensePlate = txtLicensePlate.getText().toString();
+                String cylinderCapacity = txtCylinderCapacity.getText().toString();
+
+                if (licensePlate.isEmpty() || cylinderCapacity.isEmpty()){
+                    return;
+                }
+
                 Motorcycle vehicle = null;
                 try {
-                    vehicle = new Motorcycle("ASD987",new Date(),200);
+                    vehicle = new Motorcycle(licensePlate,new Date(),Integer.parseInt(cylinderCapacity));
                 } catch (BusinessException e) {
                     e.printStackTrace();
                 }
                 parkingPresenter.addMotorcycle(vehicle);
+                loadData();
 
             }
         });
