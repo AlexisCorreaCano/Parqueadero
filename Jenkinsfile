@@ -13,28 +13,11 @@ pipeline{
     }
 
     stages{
-        stage('Checkout'){
-            steps{
-                echo "------------>Checkout<------------"
-                checkout([
-                    $class: 'GitSCM', 
-                    branches: [[name: '*/master']], 
-                    doGenerateSubmoduleConfigurations: false, 
-                    extensions: [], 
-                    gitTool: 'Default', 
-                    submoduleCfg: [], 
-                    userRemoteConfigs: [[
-                        credentialsId: 'GitHub_AlexisCorreaCano', 
-                        url:'https://github.com/AlexisCorreaCano/Parqueadero'
-                    ]]
-                ])
-            }
-        }
 
         stage('Build') {
             steps{
                 echo "------------>Build<------------"
-                sh './gradlew --b ./build.gradle clean build -x test'
+                sh './gradlew clean build -x test'
             }
         }
 
@@ -42,7 +25,8 @@ pipeline{
             steps{
                 echo "------------>Unit Tests<------------"
                 sh 'chmod +x gradlew'
-                sh './gradlew --b ./build.gradle jacocoUnitTestReport'
+                sh './gradlew clean'
+                sh './gradlew test'
             }
         }
 
