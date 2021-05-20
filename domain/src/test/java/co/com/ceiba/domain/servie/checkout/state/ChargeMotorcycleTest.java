@@ -2,6 +2,8 @@ package co.com.ceiba.domain.servie.checkout.state;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -13,6 +15,7 @@ import co.com.ceiba.domain.service.checkout.state.ChargeMotorcycle;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+@RunWith(JUnit4.class)
 public class ChargeMotorcycleTest {
 
     private ChargeMotorcycle chargeMotorcycle;

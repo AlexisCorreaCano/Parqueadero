@@ -1,7 +1,9 @@
-package co.com.ceiba.domain.servie;
+package co.com.ceiba.domain;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -16,6 +18,7 @@ import co.com.ceiba.domain.service.ParkingService;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+@RunWith(JUnit4.class)
 public class ParkingServiceTest {
 
     @Mock
