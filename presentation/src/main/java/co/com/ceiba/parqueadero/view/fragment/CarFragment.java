@@ -80,7 +80,7 @@ public class CarFragment extends Fragment implements CarView {
     private void setUpViews(View view) {
         fab = view.findViewById(R.id.fab);
         recyclerView = view.findViewById(R.id.rv_cars);
-        txtLicensePlace = view.findViewById(R.id.lbl_license_plate);
+        txtLicensePlace = view.findViewById(R.id.txt_license_plate_car);
     }
 
     private void addEvents() {
@@ -101,6 +101,7 @@ public class CarFragment extends Fragment implements CarView {
                     e.printStackTrace();
                 }
                 parkingPresenter.addCar(vehicle);
+                txtLicensePlace.setText("");
                 loadData();
 
             }

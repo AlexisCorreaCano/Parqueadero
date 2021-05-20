@@ -104,6 +104,8 @@ public class MotorcycleFragment extends Fragment implements MotorcycleView {
                     e.printStackTrace();
                 }
                 parkingPresenter.addMotorcycle(vehicle);
+                txtCylinderCapacity.setText("");
+                txtLicensePlate.setText("");
                 loadData();
 
             }
