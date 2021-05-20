@@ -1,4 +1,4 @@
-package co.com.ceiba.domain.servie.checkout.state;
+package co.com.ceiba.domain.servie.checkout.strategy;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +33,7 @@ public class ChargeCarTest {
     }
 
     @Test
-    public void shouldCalculateOneHour(){
+    public void chargeToVehicle_chargeVehicleForOneHour_shouldReturn1000total(){
         //Arrange
         date.setHours(date.getHours()-1);
         when(car.getCheckInDate()).thenReturn(date);
@@ -47,7 +47,7 @@ public class ChargeCarTest {
     }
 
     @Test
-    public void shouldCalculateNineHour(){
+    public void chargeToVehicle_chargeVehicleForNineHours_shouldReturn8000total(){
         //Arrange
         date.setHours(date.getHours()-9);
         when(car.getCheckInDate()).thenReturn(date);
@@ -60,7 +60,7 @@ public class ChargeCarTest {
     }
 
     @Test
-    public void shouldCalculateOneDay(){
+    public void chargeToVehicle_chargeVehicleForOneDay_shouldReturn8000total(){
         //Arrange
         date.setHours(date.getHours()-24);
         when(car.getCheckInDate()).thenReturn(date);
@@ -73,7 +73,7 @@ public class ChargeCarTest {
     }
 
     @Test
-    public void shouldCalculateOneDayMoreOneHour(){
+    public void chargeToVehicle_chargeVehicleForOneDayAndOneHour_shouldReturn9000total(){
         //Arrange
         date.setHours(date.getHours()-25);
         when(car.getCheckInDate()).thenReturn(date);
@@ -86,7 +86,7 @@ public class ChargeCarTest {
     }
 
     @Test
-    public void shouldCalculateOneDayMoreNineHour(){
+    public void chargeToVehicle_chargeVehicleForOneDayAndNineHours_shouldReturn16000total(){
         //Arrange
         date.setHours(date.getHours()-33);
         when(car.getCheckInDate()).thenReturn(date);

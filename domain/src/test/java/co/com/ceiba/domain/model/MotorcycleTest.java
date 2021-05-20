@@ -20,7 +20,7 @@ public class MotorcycleTest {
     }
 
     @Test
-    public void shouldCreateMotorcycle() throws BusinessException {
+    public void constructor_createMotorcycleWith200CylinderCapacity_shouldCreateMotorcycle() throws BusinessException {
         //Arrange
         Motorcycle motorcycle;
         String licensePlate = "ASD234";
@@ -34,7 +34,7 @@ public class MotorcycleTest {
     }
 
     @Test(expected = BusinessException.class)
-    public void shouldReturnBusinessExceptionBadCylinderCapacity() throws BusinessException {
+    public void constructor_createMotorcycleWith0CylinderCapacity_shouldReturnBusinessException() throws BusinessException {
         //Arrange
         Motorcycle motorcycle;
         String licensePlate = "ASD234";
@@ -45,7 +45,7 @@ public class MotorcycleTest {
     }
 
     @Test(expected = BusinessException.class)
-    public void shouldReturnBusinessExceptionBadLicensePlate() throws BusinessException {
+    public void constructor_createThreeSixLicensePlateMotorcycle_shouldReturnBusinessException() throws BusinessException {
         //Arrange
         Motorcycle motorcycle;
         String licensePlate = "ASD";

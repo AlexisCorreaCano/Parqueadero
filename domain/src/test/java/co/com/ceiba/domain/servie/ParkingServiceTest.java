@@ -42,7 +42,7 @@ public class ParkingServiceTest {
     }
 
     @Test
-    public void shouldGetCars() throws BusinessException {
+    public void getCars_askForAllCars_shouldReturnListCars() throws BusinessException {
         //Arrange
         when(vehicleRepository.getCars()).thenReturn(cars);
 
@@ -54,7 +54,7 @@ public class ParkingServiceTest {
     }
 
     @Test
-    public void shouldGetMotorcycles() throws BusinessException {
+    public void getCars_askForAllMotorcycles_shouldReturnListMotorcycles() throws BusinessException {
 
         //Arrange
         when(vehicleRepository.getMotorcycles()).thenReturn(motorcycles);
@@ -66,7 +66,7 @@ public class ParkingServiceTest {
     }
 
     @Test(expected = BusinessException.class)
-    public void shouldReturnBusinessExceptionErrorCar() throws BusinessException {
+    public void getCars_askForAllCarsWithError_shouldReturnBusinessException() throws BusinessException {
         //Arrange
         when(vehicleRepository.getCars()).thenThrow(businessException);
 
@@ -76,7 +76,7 @@ public class ParkingServiceTest {
     }
 
     @Test(expected = BusinessException.class)
-    public void shouldReturnBusinessExceptionErrorMotorcycle() throws BusinessException {
+    public void getCars_askForAllMotorcyclesWithError_shouldReturnBusinessException() throws BusinessException {
         //Arrange
         when(vehicleRepository.getMotorcycles()).thenThrow(businessException);
 

@@ -35,7 +35,7 @@ public class CheckInServiceTest {
     }
     
     @Test
-    public void shouldEnterCar() throws BusinessException {
+    public void enterVehicle_enterCarWithSpaceInParking_shouldNotReturnError() throws BusinessException {
         //Arrange
         when(vehicleRepository.getCarsNumber()).thenReturn(0);
         when(car.getLicensePlate()).thenReturn("ASD456");
@@ -46,7 +46,7 @@ public class CheckInServiceTest {
     }
 
     @Test
-    public void shouldEnterMotorcycle() throws BusinessException {
+    public void enterVehicle_enterMotorcycleWithSpaceInParking_shouldNotReturnError() throws BusinessException {
         //Arrange
         when(vehicleRepository.getMotorcyclesNumber()).thenReturn(0);
 
@@ -56,7 +56,7 @@ public class CheckInServiceTest {
     }
 
     @Test(expected = BusinessException.class)
-    public void shouldReturnBusinessExceptionNoCarCapacity() throws BusinessException {
+    public void enterVehicle_enterCarNoSpaceInParking_shouldReturnBusinessException() throws BusinessException {
         //Arrange
         when(vehicleRepository.getCarsNumber()).thenReturn(20);
 
@@ -66,7 +66,7 @@ public class CheckInServiceTest {
     }
 
     @Test(expected = BusinessException.class)
-    public void shouldReturnBusinessExceptionNoMotorcycleCapacity() throws BusinessException {
+    public void enterVehicle_enterMotorcycleNoSpaceInParking_shouldReturnBusinessException() throws BusinessException {
         //Arrange
         when(vehicleRepository.getMotorcyclesNumber()).thenReturn(10);
 

@@ -22,7 +22,7 @@ public class CarTest {
     }
 
     @Test
-    public void shouldCreateCar() throws BusinessException {
+    public void constructor_createSizeSixLicensePlateCar_shouldCreateCar() throws BusinessException {
         //Arrange
         Car car;
         String licensePlate = "ASD234";
@@ -36,7 +36,7 @@ public class CarTest {
     }
 
     @Test(expected = BusinessException.class)
-    public void shouldReturnBusinessExceptionBadLicensePlate() throws BusinessException {
+    public void  constructor_createThreeSixLicensePlateCar_shouldReturnBusinessException() throws BusinessException {
         //Arrange
         Car car;
         String licensePlate = "ASD";

@@ -48,19 +48,19 @@ public class CheckOutServiceTest {
     }
 
     @Test
-    public void shouldDeleteAndChargeCar(){
+    public void takeOutVehicle_takeOutCar_shouldReturn8000Total(){
         //Arrange
         when(chargeContext.getStrategy()).thenReturn(chargeCar);
-        when(chargeCar.chargeToVehicle(car)).thenReturn(2000.0);
+        when(chargeCar.chargeToVehicle(car)).thenReturn(8000.0);
 
         //Act
-        double result =checkOutService.takeOutVehicle(car);
+        double result = checkOutService.takeOutVehicle(car);
 
-        assertEquals(result,2000.0,0);
+        assertEquals(result,8000.0,0);
     }
 
     @Test
-    public void shouldDeleteAndChargeMotorcycle(){
+    public void takeOutVehicle_takeOutMotorcycle_shouldReturn4000Total(){
         //Arrange
         when(chargeContext.getStrategy()).thenReturn(chargeMotorcycle);
         when(chargeMotorcycle.chargeToVehicle(motorcycle)).thenReturn(4000.0);

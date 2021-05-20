@@ -1,4 +1,4 @@
-package co.com.ceiba.domain.servie.checkout.state;
+package co.com.ceiba.domain.servie.checkout.strategy;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +33,7 @@ public class ChargeMotorcycleTest {
     }
 
     @Test
-    public void shouldCalculateOneHour(){
+    public void chargeToVehicle_chargeVehicleForOneHourAnd200CC_shouldReturn500total(){
         //Arrange
         date.setHours(date.getHours()-1);
         when(motorcycle.getCheckInDate()).thenReturn(date);
@@ -48,7 +48,7 @@ public class ChargeMotorcycleTest {
     }
 
     @Test
-    public void shouldCalculateNineHour(){
+    public void chargeToVehicle_chargeVehicleForNineHoursAnd200CC_shouldReturn4000total(){
         //Arrange
         date.setHours(date.getHours()-9);
         when(motorcycle.getCheckInDate()).thenReturn(date);
@@ -62,7 +62,7 @@ public class ChargeMotorcycleTest {
     }
 
     @Test
-    public void shouldCalculateOneDay(){
+    public void chargeToVehicle_chargeVehicleForOneDayAnd200CC_shouldReturn4000total(){
         //Arrange
         date.setHours(date.getHours()-24);
         when(motorcycle.getCheckInDate()).thenReturn(date);
@@ -76,7 +76,7 @@ public class ChargeMotorcycleTest {
     }
 
     @Test
-    public void shouldCalculateOneDayMoreOneHour(){
+    public void chargeToVehicle_chargeVehicleForOneDayAndOneHourAnd200CC_shouldReturn4500total(){
         //Arrange
         date.setHours(date.getHours()-25);
         when(motorcycle.getCheckInDate()).thenReturn(date);
@@ -90,7 +90,7 @@ public class ChargeMotorcycleTest {
     }
 
     @Test
-    public void shouldCalculateOneDayMoreNineHour(){
+    public void chargeToVehicle_chargeVehicleForOneDayAndNineHoursAnd200CC_shouldReturn8000total(){
         //Arrange
         date.setHours(date.getHours()-33);
         when(motorcycle.getCheckInDate()).thenReturn(date);
@@ -104,7 +104,7 @@ public class ChargeMotorcycleTest {
     }
 
     @Test
-    public void shouldCalculateOneDayMoreNineHourAddForCylinderCapacity(){
+    public void chargeToVehicle_chargeVehicleForOneDayAndNineHoursAnd600CC_shouldReturn10000total(){
         //Arrange
         date.setHours(date.getHours()-33);
         when(motorcycle.getCheckInDate()).thenReturn(date);

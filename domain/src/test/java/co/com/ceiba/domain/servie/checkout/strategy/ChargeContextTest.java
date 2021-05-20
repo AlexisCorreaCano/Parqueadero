@@ -1,4 +1,4 @@
-package co.com.ceiba.domain.servie.checkout.state;
+package co.com.ceiba.domain.servie.checkout.strategy;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class ChargeContextTest {
     }
 
     @Test
-    public void shouldReturnChargeCar(){
+    public void getStrategy_setCarStrategy_shouldReturnInstanceOfChargeCar(){
         //Arrange
         chargeContext.setStrategy(car);
 
@@ -47,7 +47,7 @@ public class ChargeContextTest {
     }
 
     @Test
-    public void shouldReturnChargeMotorcycle(){
+    public void getStrategy_setMotorcycleStrategy_shouldReturnInstanceOfChargeMotorcycle(){
         //Arrange
         chargeContext.setStrategy(motorcycle);
 
