@@ -21,32 +21,37 @@ public class MotorcycleTest {
 
     @Test
     public void shouldCreateMotorcycle() throws BusinessException {
+        //Arrange
         Motorcycle motorcycle;
         String licensePlate = "ASD234";
         int cylinderCapacity = 200;
 
+        //Act
         motorcycle = new Motorcycle(licensePlate,checkInDate,cylinderCapacity);
 
-        assertEquals(motorcycle.getCheckInDate(),checkInDate);
-        assertEquals(motorcycle.getLicensePlate(),"ASD234");
+        //Assert
         assertEquals(motorcycle.getCylinderCapacity(),200);
     }
 
     @Test(expected = BusinessException.class)
     public void shouldReturnBusinessExceptionBadCylinderCapacity() throws BusinessException {
+        //Arrange
         Motorcycle motorcycle;
         String licensePlate = "ASD234";
         int cylinderCapacity = 0;
 
+        //Act
         motorcycle = new Motorcycle(licensePlate,checkInDate,cylinderCapacity);
     }
 
     @Test(expected = BusinessException.class)
     public void shouldReturnBusinessExceptionBadLicensePlate() throws BusinessException {
+        //Arrange
         Motorcycle motorcycle;
         String licensePlate = "ASD";
         int cylinderCapacity = 200;
 
+        //Act
         motorcycle = new Motorcycle(licensePlate,checkInDate,cylinderCapacity);
     }
 }

@@ -11,9 +11,9 @@ import co.com.ceiba.domain.model.Car;
 import co.com.ceiba.domain.model.Motorcycle;
 import co.com.ceiba.domain.repository.VehicleRepository;
 import co.com.ceiba.domain.service.checkout.CheckOutService;
-import co.com.ceiba.domain.service.checkout.state.ChargeCar;
-import co.com.ceiba.domain.service.checkout.state.ChargeContext;
-import co.com.ceiba.domain.service.checkout.state.ChargeMotorcycle;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeCar;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeContext;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeMotorcycle;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -49,9 +49,11 @@ public class CheckOutServiceTest {
 
     @Test
     public void shouldDeleteAndChargeCar(){
-        when(chargeContext.getContext()).thenReturn(chargeCar);
+        //Arrange
+        when(chargeContext.getStrategy()).thenReturn(chargeCar);
         when(chargeCar.chargeToVehicle(car)).thenReturn(2000.0);
 
+        //Act
         double result =checkOutService.takeOutVehicle(car);
 
         assertEquals(result,2000.0,0);
@@ -59,11 +61,14 @@ public class CheckOutServiceTest {
 
     @Test
     public void shouldDeleteAndChargeMotorcycle(){
-        when(chargeContext.getContext()).thenReturn(chargeMotorcycle);
+        //Arrange
+        when(chargeContext.getStrategy()).thenReturn(chargeMotorcycle);
         when(chargeMotorcycle.chargeToVehicle(motorcycle)).thenReturn(4000.0);
 
+        //Act
         double result = checkOutService.takeOutVehicle(motorcycle);
 
+        //Assert
         assertEquals(result,4000.0,0);
     }
 

@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.Date;
 
 import co.com.ceiba.domain.model.Motorcycle;
-import co.com.ceiba.domain.service.checkout.state.ChargeMotorcycle;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeMotorcycle;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -34,68 +34,86 @@ public class ChargeMotorcycleTest {
 
     @Test
     public void shouldCalculateOneHour(){
+        //Arrange
         date.setHours(date.getHours()-1);
         when(motorcycle.getCheckInDate()).thenReturn(date);
         when(motorcycle.getCylinderCapacity()).thenReturn(200);
 
+        //Act
         double result = chargeMotorcycle.chargeToVehicle(motorcycle);
 
+        //Assert
         assertEquals(result,500.0,0);
 
     }
 
     @Test
     public void shouldCalculateNineHour(){
+        //Arrange
         date.setHours(date.getHours()-9);
         when(motorcycle.getCheckInDate()).thenReturn(date);
         when(motorcycle.getCylinderCapacity()).thenReturn(200);
 
+        //Act
         double result = chargeMotorcycle.chargeToVehicle(motorcycle);
 
+        //Assert
         assertEquals(result,4000.0,0);
     }
 
     @Test
     public void shouldCalculateOneDay(){
+        //Arrange
         date.setHours(date.getHours()-24);
         when(motorcycle.getCheckInDate()).thenReturn(date);
         when(motorcycle.getCylinderCapacity()).thenReturn(200);
 
+        //Act
         double result = chargeMotorcycle.chargeToVehicle(motorcycle);
 
+        //Assert
         assertEquals(result,4000.0,0);
     }
 
     @Test
     public void shouldCalculateOneDayMoreOneHour(){
+        //Arrange
         date.setHours(date.getHours()-25);
         when(motorcycle.getCheckInDate()).thenReturn(date);
         when(motorcycle.getCylinderCapacity()).thenReturn(200);
 
+        //Act
         double result = chargeMotorcycle.chargeToVehicle(motorcycle);
 
+        //Assert
         assertEquals(result,4500.0,0);
     }
 
     @Test
     public void shouldCalculateOneDayMoreNineHour(){
+        //Arrange
         date.setHours(date.getHours()-33);
         when(motorcycle.getCheckInDate()).thenReturn(date);
         when(motorcycle.getCylinderCapacity()).thenReturn(200);
 
+        //Act
         double result = chargeMotorcycle.chargeToVehicle(motorcycle);
 
+        //Assert
         assertEquals(result,8000.0,0);
     }
 
     @Test
     public void shouldCalculateOneDayMoreNineHourAddForCylinderCapacity(){
+        //Arrange
         date.setHours(date.getHours()-33);
         when(motorcycle.getCheckInDate()).thenReturn(date);
         when(motorcycle.getCylinderCapacity()).thenReturn(600);
 
+        //Act
         double result = chargeMotorcycle.chargeToVehicle(motorcycle);
 
+        //Assert
         assertEquals(result,10000.0,0);
     }
 }

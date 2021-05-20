@@ -1,4 +1,4 @@
-package co.com.ceiba.domain.service.checkout.state;
+package co.com.ceiba.domain.service.checkout.strategy;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import co.com.ceiba.domain.common.constant.Constants;
 import co.com.ceiba.domain.model.Motorcycle;
 import co.com.ceiba.domain.model.Vehicle;
 
-public class ChargeMotorcycle implements ChargeState{
+public class ChargeMotorcycle implements ChargeStrategy {
     @Override
     public double chargeToVehicle(Vehicle vehicle) {
         //TODO separar esta logica para que no se repita (horas)

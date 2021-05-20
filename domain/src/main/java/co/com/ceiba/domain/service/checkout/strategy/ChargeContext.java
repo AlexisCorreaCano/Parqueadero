@@ -1,4 +1,4 @@
-package co.com.ceiba.domain.service.checkout.state;
+package co.com.ceiba.domain.service.checkout.strategy;
 
 import javax.inject.Inject;
 
@@ -8,22 +8,22 @@ import co.com.ceiba.domain.model.Vehicle;
 
 public class ChargeContext {
 
-    private ChargeState state;
+    private ChargeStrategy strategy;
 
     @Inject
     public ChargeContext() {
     }
 
-    public ChargeState getContext(){
-        return state;
+    public ChargeStrategy getStrategy(){
+        return strategy;
     }
 
-    public void setContext(Vehicle vehicle) {
+    public void setStrategy(Vehicle vehicle) {
         if (vehicle instanceof Car){
-            this.state = new ChargeCar();
+            this.strategy = new ChargeCar();
         }
         if (vehicle instanceof Motorcycle){
-            this.state = new ChargeMotorcycle();
+            this.strategy = new ChargeMotorcycle();
         }
 
     }

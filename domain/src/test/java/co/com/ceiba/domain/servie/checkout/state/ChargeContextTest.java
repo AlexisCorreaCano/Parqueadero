@@ -9,10 +9,10 @@ import org.mockito.MockitoAnnotations;
 
 import co.com.ceiba.domain.model.Car;
 import co.com.ceiba.domain.model.Motorcycle;
-import co.com.ceiba.domain.service.checkout.state.ChargeCar;
-import co.com.ceiba.domain.service.checkout.state.ChargeContext;
-import co.com.ceiba.domain.service.checkout.state.ChargeMotorcycle;
-import co.com.ceiba.domain.service.checkout.state.ChargeState;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeCar;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeContext;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeMotorcycle;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeStrategy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -36,19 +36,25 @@ public class ChargeContextTest {
 
     @Test
     public void shouldReturnChargeCar(){
-        chargeContext.setContext(car);
+        //Arrange
+        chargeContext.setStrategy(car);
 
-        ChargeState stateResult = chargeContext.getContext();
+        //Act
+        ChargeStrategy stateResult = chargeContext.getStrategy();
 
+        //Assert
         assertTrue(stateResult instanceof ChargeCar);
     }
 
     @Test
     public void shouldReturnChargeMotorcycle(){
-        chargeContext.setContext(motorcycle);
+        //Arrange
+        chargeContext.setStrategy(motorcycle);
 
-        ChargeState stateResult = chargeContext.getContext();
+        //Act
+        ChargeStrategy stateResult = chargeContext.getStrategy();
 
+        //Assert
         assertTrue(stateResult instanceof ChargeMotorcycle);
     }
 

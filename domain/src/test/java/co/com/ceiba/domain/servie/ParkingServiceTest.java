@@ -1,4 +1,4 @@
-package co.com.ceiba.domain;
+package co.com.ceiba.domain.servie;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -43,19 +43,23 @@ public class ParkingServiceTest {
 
     @Test
     public void shouldGetCars() throws BusinessException {
-
+        //Arrange
         when(vehicleRepository.getCars()).thenReturn(cars);
 
+        //Act
         List<Car> result = parkingService.getCars();
 
+        //Assert
         assertEquals(result, cars);
     }
 
     @Test
     public void shouldGetMotorcycles() throws BusinessException {
 
+        //Arrange
         when(vehicleRepository.getMotorcycles()).thenReturn(motorcycles);
 
+        //Act
         List<Motorcycle> result = parkingService.getMotorcycles();
 
         assertEquals(result, motorcycles);
@@ -63,17 +67,20 @@ public class ParkingServiceTest {
 
     @Test(expected = BusinessException.class)
     public void shouldReturnBusinessExceptionErrorCar() throws BusinessException {
+        //Arrange
         when(vehicleRepository.getCars()).thenThrow(businessException);
 
+        //Act
         List<Car> result = parkingService.getCars();
 
     }
 
     @Test(expected = BusinessException.class)
     public void shouldReturnBusinessExceptionErrorMotorcycle() throws BusinessException {
+        //Arrange
         when(vehicleRepository.getMotorcycles()).thenThrow(businessException);
 
-
+        //Act
         List<Motorcycle> result = parkingService.getMotorcycles();
 
     }

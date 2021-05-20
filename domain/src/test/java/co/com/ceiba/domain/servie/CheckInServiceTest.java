@@ -36,37 +36,41 @@ public class CheckInServiceTest {
     
     @Test
     public void shouldEnterCar() throws BusinessException {
-        //
+        //Arrange
         when(vehicleRepository.getCarsNumber()).thenReturn(0);
         when(car.getLicensePlate()).thenReturn("ASD456");
-        //
+
+        //Act
         checkInService.enterVehicle(car);
 
     }
 
     @Test
     public void shouldEnterMotorcycle() throws BusinessException {
-        //
+        //Arrange
         when(vehicleRepository.getMotorcyclesNumber()).thenReturn(0);
-        //
+
+        //Act
         checkInService.enterVehicle(motorcycle);
 
     }
 
     @Test(expected = BusinessException.class)
     public void shouldReturnBusinessExceptionNoCarCapacity() throws BusinessException {
-        //
+        //Arrange
         when(vehicleRepository.getCarsNumber()).thenReturn(20);
-        //
+
+        //Act
         checkInService.enterVehicle(car);
 
     }
 
     @Test(expected = BusinessException.class)
     public void shouldReturnBusinessExceptionNoMotorcycleCapacity() throws BusinessException {
-        //
+        //Arrange
         when(vehicleRepository.getMotorcyclesNumber()).thenReturn(10);
-        //
+
+        //Act
         checkInService.enterVehicle(motorcycle);
 
     }

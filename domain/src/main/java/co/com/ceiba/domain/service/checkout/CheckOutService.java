@@ -6,10 +6,10 @@ import co.com.ceiba.domain.model.Car;
 import co.com.ceiba.domain.model.Motorcycle;
 import co.com.ceiba.domain.repository.VehicleRepository;
 import co.com.ceiba.domain.model.Vehicle;
-import co.com.ceiba.domain.service.checkout.state.ChargeCar;
-import co.com.ceiba.domain.service.checkout.state.ChargeContext;
-import co.com.ceiba.domain.service.checkout.state.ChargeMotorcycle;
-import co.com.ceiba.domain.service.checkout.state.ChargeState;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeCar;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeContext;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeMotorcycle;
+import co.com.ceiba.domain.service.checkout.strategy.ChargeStrategy;
 
 public class CheckOutService {
 
@@ -24,17 +24,17 @@ public class CheckOutService {
 
     public double takeOutVehicle(Vehicle vehicle){
 
-        chargeContext.setContext(vehicle);
-        ChargeState chargeState = chargeContext.getContext();
+        chargeContext.setStrategy(vehicle);
+        ChargeStrategy chargeStrategy = chargeContext.getStrategy();
 
-        if (chargeState instanceof ChargeCar){
+        if (chargeStrategy instanceof ChargeCar){
             vehicleRepository.takeOutCar((Car) vehicle);
         }
 
-        if (chargeState instanceof ChargeMotorcycle){
+        if (chargeStrategy instanceof ChargeMotorcycle){
             vehicleRepository.takeOutMotorcycle((Motorcycle)vehicle);
         }
 
-        return chargeState.chargeToVehicle(vehicle);
+        return chargeStrategy.chargeToVehicle(vehicle);
     }
 }

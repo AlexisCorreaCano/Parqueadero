@@ -1,11 +1,11 @@
-package co.com.ceiba.domain.service.checkout.state;
+package co.com.ceiba.domain.service.checkout.strategy;
 
 import java.util.Date;
 
 import co.com.ceiba.domain.common.constant.Constants;
 import co.com.ceiba.domain.model.Vehicle;
 
-public class ChargeCar implements ChargeState {
+public class ChargeCar implements ChargeStrategy {
 
     @Override
     public double chargeToVehicle(Vehicle vehicle) {

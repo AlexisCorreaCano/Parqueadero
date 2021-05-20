@@ -1,5 +1,6 @@
 package co.com.ceiba.domain.model;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -15,27 +16,32 @@ public class CarTest {
 
     private Date checkInDate;
 
+    @Before
     public void setUp(){
         checkInDate = new Date();
     }
 
     @Test
     public void shouldCreateCar() throws BusinessException {
+        //Arrange
         Car car;
         String licensePlate = "ASD234";
 
+        //Act
         car = new Car(licensePlate,checkInDate);
 
-        assertEquals(car.getCheckInDate(),checkInDate);
+        //Assert
         assertEquals(car.getLicensePlate(),"ASD234");
 
     }
 
     @Test(expected = BusinessException.class)
     public void shouldReturnBusinessExceptionBadLicensePlate() throws BusinessException {
+        //Arrange
         Car car;
         String licensePlate = "ASD";
 
+        //Act
         car = new Car(licensePlate,checkInDate);
 
     }
