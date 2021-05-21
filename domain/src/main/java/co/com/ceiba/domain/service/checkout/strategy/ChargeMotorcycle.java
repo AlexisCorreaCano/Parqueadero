@@ -9,7 +9,6 @@ import co.com.ceiba.domain.model.Vehicle;
 public class ChargeMotorcycle implements ChargeStrategy {
     @Override
     public double chargeToVehicle(Vehicle vehicle) {
-        //TODO separar esta logica para que no se repita (horas)
         Date date = new Date();
         Date motorcycleDate = vehicle.getCheckInDate();
         long milliseconds = date.getTime() - motorcycleDate.getTime();

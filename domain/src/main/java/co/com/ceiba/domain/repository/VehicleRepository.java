@@ -5,7 +5,6 @@ import java.util.List;
 import co.com.ceiba.domain.common.exception.BusinessException;
 import co.com.ceiba.domain.model.Car;
 import co.com.ceiba.domain.model.Motorcycle;
-import co.com.ceiba.domain.model.Vehicle;
 
 public interface VehicleRepository {
 

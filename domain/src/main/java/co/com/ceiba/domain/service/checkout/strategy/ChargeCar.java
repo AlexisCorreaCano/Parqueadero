@@ -9,7 +9,6 @@ public class ChargeCar implements ChargeStrategy {
 
     @Override
     public double chargeToVehicle(Vehicle vehicle) {
-        //TODO separar esta logica para que no se repita (horas)
         Date date = new Date();
         Date carDate = vehicle.getCheckInDate();
         long milliseconds = date.getTime() - carDate.getTime();
@@ -27,9 +26,7 @@ public class ChargeCar implements ChargeStrategy {
             hours = 0;
         }
 
-        double total = days * Constants.COTS_DAY_CAR + hours * Constants.COST_HOUR_CAR;
-
-        return total;
+        return days * Constants.COTS_DAY_CAR + hours * Constants.COST_HOUR_CAR;
     }
 
 

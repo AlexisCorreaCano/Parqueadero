@@ -44,8 +44,6 @@ public class CheckInService {
 
     }
 
-    //Todo validar que el vehiculo no este en el estacionamiento
-
     private boolean thereIsCapacity(Vehicle vehicle){
 
         boolean result = false;
