@@ -56,6 +56,7 @@ public class CheckOutServiceTest {
         //Act
         double result = checkOutService.takeOutVehicle(car);
 
+        //Assert
         assertEquals(result,8000.0,0);
     }
 

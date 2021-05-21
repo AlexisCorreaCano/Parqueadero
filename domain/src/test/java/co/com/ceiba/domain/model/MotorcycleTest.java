@@ -9,6 +9,7 @@ import java.util.Date;
 import co.com.ceiba.domain.common.exception.BusinessException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(JUnit4.class)
 public class MotorcycleTest {
@@ -33,25 +34,44 @@ public class MotorcycleTest {
         assertEquals(motorcycle.getCylinderCapacity(),200);
     }
 
-    @Test(expected = BusinessException.class)
-    public void constructor_createMotorcycleWith0CylinderCapacity_shouldReturnBusinessException() throws BusinessException {
+    @Test
+    public void constructor_createMotorcycleWith0CylinderCapacity_shouldReturnBusinessException(){
         //Arrange
         Motorcycle motorcycle;
         String licensePlate = "ASD234";
         int cylinderCapacity = 0;
+        BusinessException exceptionExpected = null;
 
-        //Act
-        motorcycle = new Motorcycle(licensePlate,checkInDate,cylinderCapacity);
+        try {
+            //Act
+            motorcycle = new Motorcycle(licensePlate,checkInDate,cylinderCapacity);
+        }catch (BusinessException e){
+            exceptionExpected = e;
+        }finally {
+            //Assert
+            assertNotNull(exceptionExpected);
+        }
+
     }
 
-    @Test(expected = BusinessException.class)
-    public void constructor_createThreeSixLicensePlateMotorcycle_shouldReturnBusinessException() throws BusinessException {
+    @Test
+    public void constructor_createThreeSixLicensePlateMotorcycle_shouldReturnBusinessException(){
         //Arrange
         Motorcycle motorcycle;
         String licensePlate = "ASD";
         int cylinderCapacity = 200;
+        BusinessException exceptionExpected = null;
 
-        //Act
-        motorcycle = new Motorcycle(licensePlate,checkInDate,cylinderCapacity);
+        try {
+            //Act
+            motorcycle = new Motorcycle(licensePlate,checkInDate,cylinderCapacity);
+        }catch (BusinessException e){
+            exceptionExpected = e;
+        }finally {
+            //Assert
+            assertNotNull(exceptionExpected);
+        }
+
+
     }
 }

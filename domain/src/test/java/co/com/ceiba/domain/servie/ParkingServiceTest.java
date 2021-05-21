@@ -16,6 +16,7 @@ import co.com.ceiba.domain.repository.VehicleRepository;
 import co.com.ceiba.domain.service.ParkingService;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(JUnit4.class)
@@ -62,26 +63,46 @@ public class ParkingServiceTest {
         //Act
         List<Motorcycle> result = parkingService.getMotorcycles();
 
+        //Assert
         assertEquals(result, motorcycles);
     }
 
-    @Test(expected = BusinessException.class)
-    public void getCars_askForAllCarsWithError_shouldReturnBusinessException() throws BusinessException {
+    @Test
+    public void getCars_askForAllCarsWithError_shouldReturnBusinessException(){
         //Arrange
         when(vehicleRepository.getCars()).thenThrow(businessException);
+        BusinessException exceptionExpected = null;
 
-        //Act
-        List<Car> result = parkingService.getCars();
+        try{
+            //Act
+            List<Car> result = parkingService.getCars();
+        }catch (BusinessException e){
+            exceptionExpected = e;
+        }finally {
+            //Assert
+            assertNotNull(exceptionExpected);
+        }
+
+
 
     }
 
-    @Test(expected = BusinessException.class)
-    public void getCars_askForAllMotorcyclesWithError_shouldReturnBusinessException() throws BusinessException {
+    @Test
+    public void getCars_askForAllMotorcyclesWithError_shouldReturnBusinessException(){
         //Arrange
         when(vehicleRepository.getMotorcycles()).thenThrow(businessException);
+        BusinessException exceptionExpected = null;
 
-        //Act
-        List<Motorcycle> result = parkingService.getMotorcycles();
+        try{
+            //Act
+            List<Motorcycle> result = parkingService.getMotorcycles();
+        }catch (BusinessException e){
+            exceptionExpected = e;
+        }finally {
+            //Assert
+            assertNotNull(exceptionExpected);
+        }
+
 
     }
 

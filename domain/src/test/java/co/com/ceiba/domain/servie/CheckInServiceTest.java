@@ -13,6 +13,8 @@ import co.com.ceiba.domain.model.Motorcycle;
 import co.com.ceiba.domain.repository.VehicleRepository;
 import co.com.ceiba.domain.service.CheckInService;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(JUnit4.class)
@@ -35,43 +37,73 @@ public class CheckInServiceTest {
     }
     
     @Test
-    public void enterVehicle_enterCarWithSpaceInParking_shouldNotReturnError() throws BusinessException {
+    public void enterVehicle_enterCarWithSpaceInParking_shouldNotReturnError(){
         //Arrange
         when(vehicleRepository.getCarsNumber()).thenReturn(0);
         when(car.getLicensePlate()).thenReturn("ASD456");
+        BusinessException exceptionExpected = null;
 
-        //Act
-        checkInService.enterVehicle(car);
+        try{
+            //Act
+            checkInService.enterVehicle(car);
+        }catch (BusinessException e){
+            exceptionExpected = e;
+        }finally {
+            //Assert
+            assertNull(exceptionExpected);
+        }
+    }
+
+    @Test
+    public void enterVehicle_enterMotorcycleWithSpaceInParking_shouldNotReturnError(){
+        //Arrange
+        when(vehicleRepository.getMotorcyclesNumber()).thenReturn(0);
+        BusinessException exceptionExpected = null;
+
+        try {
+            //Act
+            checkInService.enterVehicle(motorcycle);
+        }catch (BusinessException e){
+            exceptionExpected = e;
+        }finally {
+            //Assert
+            assertNull(exceptionExpected);
+        }
+    }
+
+    @Test
+    public void enterVehicle_enterCarNoSpaceInParking_shouldReturnBusinessException(){
+        //Arrange
+        when(vehicleRepository.getCarsNumber()).thenReturn(20);
+        BusinessException exceptionExpected = null;
+
+        try {
+            //Act
+            checkInService.enterVehicle(car);
+        }catch (BusinessException e){
+            exceptionExpected = e;
+        }finally {
+            //Assert
+            assertNotNull(exceptionExpected);
+        }
 
     }
 
     @Test
-    public void enterVehicle_enterMotorcycleWithSpaceInParking_shouldNotReturnError() throws BusinessException {
-        //Arrange
-        when(vehicleRepository.getMotorcyclesNumber()).thenReturn(0);
-
-        //Act
-        checkInService.enterVehicle(motorcycle);
-
-    }
-
-    @Test(expected = BusinessException.class)
-    public void enterVehicle_enterCarNoSpaceInParking_shouldReturnBusinessException() throws BusinessException {
-        //Arrange
-        when(vehicleRepository.getCarsNumber()).thenReturn(20);
-
-        //Act
-        checkInService.enterVehicle(car);
-
-    }
-
-    @Test(expected = BusinessException.class)
-    public void enterVehicle_enterMotorcycleNoSpaceInParking_shouldReturnBusinessException() throws BusinessException {
+    public void enterVehicle_enterMotorcycleNoSpaceInParking_shouldReturnBusinessException(){
         //Arrange
         when(vehicleRepository.getMotorcyclesNumber()).thenReturn(10);
+        BusinessException exceptionExpected = null;
 
-        //Act
-        checkInService.enterVehicle(motorcycle);
+        try {
+            //Act
+            checkInService.enterVehicle(motorcycle);
+        }catch (BusinessException e){
+            exceptionExpected = e;
+        }finally {
+            //Assert
+            assertNotNull(exceptionExpected);
+        }
 
     }
     
