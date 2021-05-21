@@ -6,9 +6,9 @@ import co.com.ceiba.domain.model.Vehicle;
 
 public interface ParkingPresenter {
 
-    void addCar(Car vehicle);
+    void addCar(String licensePlate);
     void deleteCar(Car vehicle);
-    void addMotorcycle(Motorcycle vehicle);
+    void addMotorcycle(String licensePlate,int cylinderCapacity);
     void deleteMotorcycle(Motorcycle vehicle);
     void listCars();
     void listMotorcycles();

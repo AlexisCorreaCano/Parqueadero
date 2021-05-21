@@ -11,6 +11,6 @@ public interface CarView {
     void hideLoading();
     void showCars(List<Car> cars);
     void deleteCar(int position);
-    void showTotal(double total);
+    void showAlert(String total);
 
 }

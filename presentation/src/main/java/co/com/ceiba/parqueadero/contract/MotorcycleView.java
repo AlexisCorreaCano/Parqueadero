@@ -9,5 +9,5 @@ public interface MotorcycleView {
     void hideLoading();
     void showMotorcycle(List<Motorcycle> motorcycles);
     void deleteMotorcycle(int position);
-    void showTotal(double total);
+    void showAlert(String message);
 }

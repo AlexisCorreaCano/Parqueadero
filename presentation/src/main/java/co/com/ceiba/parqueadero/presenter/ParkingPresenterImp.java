@@ -2,6 +2,7 @@ package co.com.ceiba.parqueadero.presenter;
 
 import android.os.AsyncTask;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -48,14 +49,15 @@ public class ParkingPresenterImp implements ParkingPresenter {
 
 
     @Override
-    public void addCar(Car vehicle) {
+    public void addCar(String licensePlate) {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 try {
+                    Car vehicle =new Car(licensePlate,new Date());
                     checkInService.enterVehicle(vehicle);
                 } catch (BusinessException e) {
-                    e.printStackTrace();
+                   carView.showAlert(e.getMessage());
                 }
             }
         });
@@ -67,20 +69,21 @@ public class ParkingPresenterImp implements ParkingPresenter {
             @Override
             public void run() {
                 double total = checkOutService.takeOutVehicle(vehicle);
-                carView.showTotal(total);
+                carView.showAlert("Total a pagar "+total);
             }
         });
     }
 
     @Override
-    public void addMotorcycle(Motorcycle vehicle) {
+    public void addMotorcycle(String licensePlate,int cylinderCapacity) {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 try {
+                    Motorcycle vehicle  = new Motorcycle(licensePlate,new Date(),cylinderCapacity);
                     checkInService.enterVehicle(vehicle);
                 } catch (BusinessException e) {
-                    e.printStackTrace();
+                    motorcycleView.showAlert(e.getMessage());
                 }
             }
         });
@@ -92,12 +95,10 @@ public class ParkingPresenterImp implements ParkingPresenter {
             @Override
             public void run() {
                 double total = checkOutService.takeOutVehicle(vehicle);
-                motorcycleView.showTotal(total);
+                motorcycleView.showAlert("Total a pagar: "+total);
             }
         });
     }
-
-
 
     @Override
     public void listCars() {
@@ -108,7 +109,7 @@ public class ParkingPresenterImp implements ParkingPresenter {
                     List<Car> cars = parkingService.getCars();
                     carView.showCars(cars);
                 } catch (BusinessException e) {
-                    e.printStackTrace();
+                    carView.showAlert(e.getMessage());
                 }
             }
         });
@@ -123,7 +124,7 @@ public class ParkingPresenterImp implements ParkingPresenter {
                     List<Motorcycle> motorcycles = parkingService.getMotorcycles();
                     motorcycleView.showMotorcycle(motorcycles);
                 } catch (BusinessException e) {
-                    e.printStackTrace();
+                    motorcycleView.showAlert(e.getMessage());
                 }
             }
         });

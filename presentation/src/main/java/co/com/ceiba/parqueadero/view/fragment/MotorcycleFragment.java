@@ -92,18 +92,10 @@ public class MotorcycleFragment extends Fragment implements MotorcycleView {
 
                 String licensePlate = txtLicensePlate.getText().toString();
                 String cylinderCapacity = txtCylinderCapacity.getText().toString();
-
-                if (licensePlate.isEmpty() || cylinderCapacity.isEmpty()){
-                    return;
+                if(cylinderCapacity.isEmpty()){
+                    cylinderCapacity = "0";
                 }
-
-                Motorcycle vehicle = null;
-                try {
-                    vehicle = new Motorcycle(licensePlate,new Date(),Integer.parseInt(cylinderCapacity));
-                } catch (BusinessException e) {
-                    e.printStackTrace();
-                }
-                parkingPresenter.addMotorcycle(vehicle);
+                parkingPresenter.addMotorcycle(licensePlate,Integer.parseInt(cylinderCapacity));
                 txtCylinderCapacity.setText("");
                 txtLicensePlate.setText("");
                 loadData();
@@ -175,16 +167,16 @@ public class MotorcycleFragment extends Fragment implements MotorcycleView {
     }
 
     @Override
-    public void showTotal(double total) {
+    public void showAlert(String message) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-                builder1.setMessage("Total a pagar: "+total);
+                builder1.setMessage(message);
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(
-                        "Yes",
+                        "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();

@@ -89,18 +89,7 @@ public class CarFragment extends Fragment implements CarView {
             public void onClick(View view) {
 
                 String licensePlate = txtLicensePlace.getText().toString();
-
-                if (licensePlate.isEmpty()){
-                    return;
-                }
-
-                Car vehicle = null;
-                try {
-                    vehicle = new Car(licensePlate,new Date());
-                } catch (BusinessException e) {
-                    e.printStackTrace();
-                }
-                parkingPresenter.addCar(vehicle);
+                parkingPresenter.addCar(licensePlate);
                 txtLicensePlace.setText("");
                 loadData();
 
@@ -143,16 +132,16 @@ public class CarFragment extends Fragment implements CarView {
     }
 
     @Override
-    public void showTotal(double total) {
+    public void showAlert(String message) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-                builder1.setMessage("Total a pagar: "+total);
+                builder1.setMessage(message);
                 builder1.setCancelable(true);
 
                 builder1.setPositiveButton(
-                        "Yes",
+                        "OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
