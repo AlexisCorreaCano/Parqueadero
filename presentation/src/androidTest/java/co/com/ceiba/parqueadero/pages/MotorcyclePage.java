@@ -10,6 +10,7 @@ public class MotorcyclePage extends BaseTest {
     private final int BUTTON_ID = R.id.fab_motorcycle;
     private final int TEXT_ID = R.id.lbl_license_plate;
     private final String TAB_MOTORCYCLE = "MOTORCYCLES";
+    private final String MESSAGE_ALERT_ID = "message";
 
     public MotorcyclePage navigateToMotorcyclePage(){
         super.clickButton(TAB_MOTORCYCLE);
@@ -17,6 +18,11 @@ public class MotorcyclePage extends BaseTest {
     }
 
     public MotorcyclePage enterLicensePlate(String text){
+        super.enterText(EDIT_TEXT_LICENSE_PLATE_ID,text);
+        return this;
+    }
+
+    public MotorcyclePage enterLicensePlateBad(String text){
         super.enterText(EDIT_TEXT_LICENSE_PLATE_ID,text);
         return this;
     }
@@ -33,6 +39,11 @@ public class MotorcyclePage extends BaseTest {
 
     public MotorcyclePage verityCarInList(String text){
         super.verifyTextDisplay(TEXT_ID,text);
+        return this;
+    }
+
+    public MotorcyclePage verityAlert(){
+        super.verifyTextDisplay(MESSAGE_ALERT_ID);
         return this;
     }
 

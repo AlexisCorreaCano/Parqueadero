@@ -7,6 +7,8 @@ import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withParent;
+import static androidx.test.espresso.matcher.ViewMatchers.withResourceName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
@@ -29,6 +31,11 @@ public class BaseTest {
 
     protected static void verifyTextDisplay(int resourceId,String text){
         onView(allOf(withId(resourceId),withText(text)))
+                .check(matches(isDisplayed()));
+    }
+
+    protected static void verifyTextDisplay(String resourceName){
+        onView(allOf(withResourceName("message")))
                 .check(matches(isDisplayed()));
     }
 }

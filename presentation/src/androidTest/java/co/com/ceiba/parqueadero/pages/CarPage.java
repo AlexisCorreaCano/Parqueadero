@@ -8,8 +8,14 @@ public class CarPage extends BaseTest {
     private final int EDIT_TEXT_ID = R.id.txt_license_plate_car;
     private final int BUTTON_ID = R.id.fab;
     private final int TEXT_ID = R.id.lbl_license_plate;
+    private final String MESSAGE_ALERT_ID = "message";
 
     public CarPage enterLicencePlateCorrect(String text){
+        super.enterText(EDIT_TEXT_ID,text);
+        return this;
+    }
+
+    public CarPage enterLicencePlateIncorrect(String text){
         super.enterText(EDIT_TEXT_ID,text);
         return this;
     }
@@ -24,8 +30,9 @@ public class CarPage extends BaseTest {
         return this;
     }
 
-
-
-
+    public CarPage verityAlert(){
+        super.verifyTextDisplay(MESSAGE_ALERT_ID);
+        return this;
+    }
 
 }

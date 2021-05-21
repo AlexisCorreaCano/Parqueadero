@@ -37,4 +37,54 @@ public class MotorcycleTest {
 
     }
 
+    @Test
+    public void addMotorcycle_writeBadLicensePlate_shouldSeenAlert(){
+        motorcyclePage.navigateToMotorcyclePage()
+                .enterLicensePlateBad("SDE4")
+                .enterCylinderCapacity("150")
+                .clickAddMotorcycle()
+                .verityAlert();
+
+    }
+
+    @Test
+    public void addMotorcycle_writeLicensePlateWithSevenDigits_shouldSeenAlert(){
+        motorcyclePage.navigateToMotorcyclePage()
+                .enterLicensePlateBad("SDE4888")
+                .enterCylinderCapacity("150")
+                .clickAddMotorcycle()
+                .verityAlert();
+
+    }
+
+    @Test
+    public void addMotorcycle_writeCylinderCapacityZero_shouldSeenAlert(){
+        motorcyclePage.navigateToMotorcyclePage()
+                .enterLicensePlateBad("SDE488")
+                .enterCylinderCapacity("0")
+                .clickAddMotorcycle()
+                .verityAlert();
+
+    }
+
+    @Test
+    public void addMotorcycle_writeLicensePlateOnlyLatter_shouldSeenAlert(){
+        motorcyclePage.navigateToMotorcyclePage()
+                .enterLicensePlateBad("SDEDFR")
+                .enterCylinderCapacity("150")
+                .clickAddMotorcycle()
+                .verityAlert();
+
+    }
+
+    @Test
+    public void addMotorcycle_writeLicensePlateOnlyNumbers_shouldSeenAlert(){
+        motorcyclePage.navigateToMotorcyclePage()
+                .enterLicensePlateBad("456675")
+                .enterCylinderCapacity("150")
+                .clickAddMotorcycle()
+                .verityAlert();
+
+    }
+
 }
