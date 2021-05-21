@@ -25,14 +25,7 @@ public class CarTranslator {
         return carEntity;
     }
 
-    public Car fromEntityToDomain(CarEntity carEntity) throws BusinessException {
-        Car car = new Car(carEntity.licensePlate,
-                fromTimestamp(carEntity.checkInDate));
-
-        return car;
-    }
-
-    public List<Car> fromListEntityToListDomain(List<CarEntity> carEntities) throws BusinessException {
+    public List<Car> fromListEntityToListDomain(List<CarEntity> carEntities){
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < carEntities.size(); i++) {
             cars.add( new Car(carEntities.get(i).licensePlate,

@@ -10,7 +10,7 @@ public abstract class Vehicle {
     private String licensePlate;
     private final Date checkInDate;
 
-    public Vehicle(String licensePlate, Date checkInDate) throws BusinessException {
+    public Vehicle(String licensePlate, Date checkInDate) {
         setLicensePlate(licensePlate);
         this.checkInDate = checkInDate;
     }
@@ -19,7 +19,7 @@ public abstract class Vehicle {
         return licensePlate;
     }
 
-    private void setLicensePlate(String licensePlate) throws BusinessException {
+    private void setLicensePlate(String licensePlate){
         if (licensePlate.length()<6){
             throw new BusinessException(ErrorMessage.MESSAGE_LICENSE_PLATE, ErrorCode.CODE_LICENSE_PLATE);
         }

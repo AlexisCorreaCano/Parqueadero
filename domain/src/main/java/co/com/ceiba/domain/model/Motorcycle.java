@@ -9,7 +9,7 @@ import co.com.ceiba.domain.common.exception.BusinessException;
 public class Motorcycle extends Vehicle{
     private int cylinderCapacity;
 
-    public Motorcycle(String licensePlate, Date checkInDate, int cylinderCapacity) throws BusinessException {
+    public Motorcycle(String licensePlate, Date checkInDate, int cylinderCapacity){
         super(licensePlate, checkInDate);
         setCylinderCapacity(cylinderCapacity);
     }

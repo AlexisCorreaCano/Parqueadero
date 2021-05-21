@@ -1,6 +1,6 @@
 package co.com.ceiba.domain.common.exception;
 
-public class BusinessException extends Exception {
+public class BusinessException extends RuntimeException {
 
     private int code;
 

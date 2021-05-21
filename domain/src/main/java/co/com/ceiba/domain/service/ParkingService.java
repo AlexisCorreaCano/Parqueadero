@@ -22,7 +22,7 @@ public class ParkingService {
         return vehicleRepository.getCars();
     }
 
-    public List<Motorcycle> getMotorcycles() throws BusinessException {
+    public List<Motorcycle> getMotorcycles(){
         return vehicleRepository.getMotorcycles();
     }
 

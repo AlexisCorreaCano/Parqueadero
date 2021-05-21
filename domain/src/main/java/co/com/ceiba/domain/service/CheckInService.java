@@ -24,7 +24,7 @@ public class CheckInService {
         this.vehicleRepository = vehicleRepository;
     }
 
-    public void enterVehicle(Vehicle vehicle) throws BusinessException {
+    public void enterVehicle(Vehicle vehicle){
 
         if (!thereIsCapacity(vehicle)){
             throw new BusinessException(ErrorMessage.MESSAGE_FULL_PARKING, ErrorCode.CODE_FULL_PARKING);

@@ -35,13 +35,13 @@ public class VehicleRepositoryRoom implements VehicleRepository {
     }
 
     @Override
-    public List<Car> getCars() throws BusinessException {
+    public List<Car> getCars(){
         List<CarEntity> cars = carDao.getCars();
         return carTranslator.fromListEntityToListDomain(cars);
     }
 
     @Override
-    public List<Motorcycle> getMotorcycles() throws BusinessException {
+    public List<Motorcycle> getMotorcycles(){
         List<MotorcycleEntity> motorcycles = motorcycleDao.getMotorcycles();
         return motorcycleTranslator.fromListEntityToListDomain(motorcycles);
     }

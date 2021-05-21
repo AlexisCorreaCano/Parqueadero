@@ -27,15 +27,7 @@ public class MotorcycleTranslator {
         return motorcycleEntity;
     }
 
-    public Motorcycle fromEntityToDomain(MotorcycleEntity motorcycleEntity) throws BusinessException {
-        Motorcycle motorcycle = new Motorcycle(motorcycleEntity.licensePlate,
-                fromTimestamp(motorcycleEntity.checkInDate),
-                motorcycleEntity.cylinderCapacity);
-
-        return motorcycle;
-    }
-
-    public List<Motorcycle> fromListEntityToListDomain(List<MotorcycleEntity> motorcycleEntities) throws BusinessException {
+    public List<Motorcycle> fromListEntityToListDomain(List<MotorcycleEntity> motorcycleEntities) {
         List<Motorcycle> motorcycles = new ArrayList<>();
         for (int i = 0; i < motorcycleEntities.size(); i++) {
             motorcycles.add( new Motorcycle(motorcycleEntities.get(i).licensePlate,

@@ -5,7 +5,7 @@ import java.util.Date;
 import co.com.ceiba.domain.common.exception.BusinessException;
 
 public class Car extends Vehicle {
-    public Car(String licensePlate, Date checkInDate) throws BusinessException {
+    public Car(String licensePlate, Date checkInDate) {
         super(licensePlate, checkInDate);
     }
 }
