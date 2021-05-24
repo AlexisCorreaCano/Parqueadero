@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -43,6 +44,7 @@ public class CarFragment extends Fragment implements CarView {
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
     private EditText txtLicensePlace;
+    private ProgressBar prg_car;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,7 @@ public class CarFragment extends Fragment implements CarView {
         fab = view.findViewById(R.id.fab);
         recyclerView = view.findViewById(R.id.rv_cars);
         txtLicensePlace = view.findViewById(R.id.txt_license_plate_car);
+        prg_car = view.findViewById(R.id.prg_car);
     }
 
     private void addEvents() {
@@ -99,12 +102,17 @@ public class CarFragment extends Fragment implements CarView {
 
     @Override
     public void showLoading() {
-
+        prg_car.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                prg_car.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override

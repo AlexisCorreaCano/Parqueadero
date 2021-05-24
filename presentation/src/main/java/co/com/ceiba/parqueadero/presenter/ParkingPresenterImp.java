@@ -50,6 +50,7 @@ public class ParkingPresenterImp implements ParkingPresenter {
 
     @Override
     public void addCar(String licensePlate) {
+        carView.showLoading();
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -59,23 +60,27 @@ public class ParkingPresenterImp implements ParkingPresenter {
                 } catch (BusinessException e) {
                    carView.showAlert(e.getMessage());
                 }
+                carView.hideLoading();
             }
         });
     }
 
     @Override
     public void deleteCar(Car vehicle) {
+        carView.showLoading();
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 double total = checkOutService.takeOutVehicle(vehicle);
                 carView.showAlert("Total a pagar "+total);
+                carView.hideLoading();
             }
         });
     }
 
     @Override
     public void addMotorcycle(String licensePlate,int cylinderCapacity) {
+        motorcycleView.showLoading();
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -85,23 +90,27 @@ public class ParkingPresenterImp implements ParkingPresenter {
                 } catch (BusinessException e) {
                     motorcycleView.showAlert(e.getMessage());
                 }
+                motorcycleView.hideLoading();
             }
         });
     }
 
     @Override
     public void deleteMotorcycle(Motorcycle vehicle) {
+        motorcycleView.showLoading();
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 double total = checkOutService.takeOutVehicle(vehicle);
                 motorcycleView.showAlert("Total a pagar: "+total);
+                motorcycleView.hideLoading();
             }
         });
     }
 
     @Override
     public void listCars() {
+        carView.showLoading();
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -111,12 +120,14 @@ public class ParkingPresenterImp implements ParkingPresenter {
                 } catch (BusinessException e) {
                     carView.showAlert(e.getMessage());
                 }
+                carView.hideLoading();
             }
         });
     }
 
     @Override
     public void listMotorcycles() {
+        motorcycleView.showLoading();
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -126,11 +137,9 @@ public class ParkingPresenterImp implements ParkingPresenter {
                 } catch (BusinessException e) {
                     motorcycleView.showAlert(e.getMessage());
                 }
+                motorcycleView.hideLoading();
             }
         });
     }
-
-
-
 
 }

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -44,6 +45,7 @@ public class MotorcycleFragment extends Fragment implements MotorcycleView {
     private FloatingActionButton fab;
     private EditText txtLicensePlate;
     private EditText txtCylinderCapacity;
+    private ProgressBar prg_motorcycle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class MotorcycleFragment extends Fragment implements MotorcycleView {
         recyclerView = view.findViewById(R.id.rv_motorcycle);
         txtLicensePlate = view.findViewById(R.id.txt_license_plate);
         txtCylinderCapacity = view.findViewById(R.id.txt_cylinder_capacity);
+        prg_motorcycle = view.findViewById(R.id.prg_motorcycle);
     }
 
     @Override
@@ -106,12 +109,17 @@ public class MotorcycleFragment extends Fragment implements MotorcycleView {
 
     @Override
     public void showLoading() {
-
+        prg_motorcycle.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                prg_motorcycle.setVisibility(View.GONE);
+            }
+        });
     }
 
 

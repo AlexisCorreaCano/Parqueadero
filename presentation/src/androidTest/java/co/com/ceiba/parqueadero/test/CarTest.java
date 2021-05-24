@@ -36,6 +36,12 @@ public class CarTest {
     }
 
     @Test
+    public void deleteCar_deleteCarFromList_shouldSeenAlert(){
+        carPage.deleteItem(0)
+                .verityAlert();
+    }
+
+    @Test
     public void addCar_tryAddCarWithLicensePlateWithOneLetter_shouldShowAlert(){
         carPage.enterLicencePlateIncorrect("A")
                 .clickAddCar()
